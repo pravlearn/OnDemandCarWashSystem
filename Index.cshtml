@@ -1,0 +1,80 @@
+﻿@model IEnumerable<CarWashWebApplication.Models.UserModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    #background {
+        background-image: url(../images/hbg.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        margin-top: -50px;
+    }
+    #tr{
+        font-weight:bold;
+    }
+</style><body id="background">
+
+    <h2>List of Users</h2>
+    <button onclick="location.href='@Url.Action("Registration", "Home")';return false;">Create New User</button>
+    <table class="table" id="tr">
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>Edit | Delete</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+      
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                    @Html.ActionLink("Delete", "Delete", new {id=item.Id })
+                </td>
+            </tr>
+        }
+     </table>
+</body>

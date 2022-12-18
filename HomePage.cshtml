@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "HomePage";
+}
+<style>
+       #background {
+               background-image: url(../images/hmbg.jpg);
+               background-position: inherit;
+               background-repeat: no-repeat;
+               background-size: 100% 254%;
+               padding: 0px;
+
+    }
+
+       #Booking_Heading {
+               font-family: Apple Chancery, Serif; /*"Times New Roman", Serif;*/
+               margin: 0px;
+               text-align: center;
+               text-decoration: underline;
+
+    }
+
+       #text_homePage {
+               font-family: "Brush Script MT", Serif;
+
+    }
+</style>
+<body id="background">
+    <div>
+        <h1 id="Booking_Heading">ONDEMAND CAR WASH Service</h1>
+    </div>
+    <div style="padding-top: 55px;">
+        <h2 id="text_homePage"><Center></Center></h2>
+        <h2 id="text_homePage"><Center></Center></h2>
+        <h2 id="text_homePage">
+            @Html.ActionLink("login", "Login") to use our services or @Html.ActionLink("Click Here to Register", "Registration")
+        </h2>
+    </div>
+</body>
+
+
