@@ -1,0 +1,57 @@
+﻿@model CarWashWebApplication.Models.Login
+@{
+    ViewBag.Title = "login";
+}
+
+
+<h2>login</h2>
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    //this is for create form tag
+    @Html.AntiForgeryToken() // this is for prevent CSRF attack
+    @Html.ValidationSummary(true)
+    if (@ViewBag.Message != null)
+    {
+
+        <div style="border:1px solid red">
+            @ViewBag.Message
+        </div>
+    }
+
+<table>
+    <tr>
+        <td>@Html.LabelFor(a => a.Email)</td>
+        <td>@Html.TextBoxFor(a => a.Email)</td>
+        <td>@Html.ValidationMessageFor(a => a.Email)</td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(a => a.Password)
+        </td>
+        <td>
+            @Html.PasswordFor(a => a.Password)
+        </td>
+        <td>
+            @Html.ValidationMessageFor(a => a.Password)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(a => a.Role)
+        </td>
+        <td>
+            @Html.TextBoxFor(a => a.Role, new { value = "Customer" })
+        </td>
+        <td>
+            @Html.ValidationMessageFor(a => a.Role)
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <input type="submit" value="Login" />
+        </td>
+        <td></td>
+    </tr>
+</table>
+}
