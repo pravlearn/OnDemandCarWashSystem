@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CarWashWebApplication.Models
+namespace CarWashWebApiService.Models
 {
-    public class Login
+    public class UserLogin
     {
         public string Email { get; set; }
-        public string Password { get; set; }
+        public string Password { get; set; }   
         public string Role { get; set; }
     }
 }
