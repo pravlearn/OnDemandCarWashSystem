@@ -1,50 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Services.Description;
-using CarWashWebApplication.Models;
-using CarWashWebApplication.Repository;
-using Newtonsoft.Json;
+using System.Web.Http;
+using System.Web.UI.WebControls;
+using CarWashWebApiService.Models;
+using CarWashWebApiService.Repository;
 
-namespace CarWashWebApplication.Controllers
+
+namespace CarWashWebApiService.Controllers
 {
-    public class LoginController : Controller
-    {
-        // GET: Login
-        public ActionResult Index()
+    [RoutePrefix("api/login")]
+    public class LoginController : ApiController
+    {  
+       IloginRepository iloginRepository = new IloginRepository();
+
+
+        [HttpGet]
+        [Route("CustomerLogin")]
+        public  Customer CustomerLogin(UserLogin login)
         {
-            return View();
+            var user =  iloginRepository.CustomerLogin(login);
+            return user; 
         }
-        public ActionResult login()
+        [HttpGet]
+        [Route("WasherLogin")]
+        public Customer WasherLogin(UserLogin login)
         {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(Login u)
-        {
-            if (ModelState.IsValid)
-            {
-                var service = new ServiceRepository();
-                UserModel user = new UserModel();
-                {
-                    using (var httpClient = new HttpClient())
-                    {
-                        using (var response = service.GetResponse("login/CustomerLogin"))
-                        {
-                            string apiResponse = await response.Content.ReadAsStringAsync();
-                            user = JsonConvert.DeserializeObject<UserModel>(apiResponse);
-                            return RedirectToAction("Index", "Home");
-                        }
-                    }
-                   
-                }
-            }
-            return View(u);
+            var user = iloginRepository.WasherLogin(login);
+            return user;
         }
     }
 }
